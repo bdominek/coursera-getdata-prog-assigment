@@ -52,7 +52,12 @@ getmeanstd <- function(df, filesPath) {
 # converts activity ids to descriptive names in the activity column
 applyactivities <- function(df, filesPath) { 
    # Use descriptive activity names to name the activities in the dataset
-    colnames(df) <- "activity"
+    colnames(df) <- "activityno"
+    dfActivities <- read.table(file.path(filesPath, "activity_labels.txt")) 
+    
+#    colnames(df) <- c("activityno", "activitylabel")
+#    df <- join(df, dfActivities, activityno, match="all")
+    
     df$activity[df$activity == 1] = "WALKING" 
     df$activity[df$activity == 2] = "WALKING_UPSTAIRS" 
     df$activity[df$activity == 3] = "WALKING_DOWNSTAIRS" 
